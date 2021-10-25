@@ -18,16 +18,20 @@ const limparFormulario = () => {
 };
 
 const preencherFormulario = async (evento) => {
-    const cep = evento.target.value;
+    const cep = evento.target.value.replace('-', '');
     limparFormulario();
     if (cepValido(cep)){
         const infoCep = await pesquisarCep(cep);
+        if (infoCep.erro){
+            document.querySelector('#endereco').value = "CEP não encontrado, tente novamente.";
+        }else{
         document.querySelector('#endereco').value = infoCep.logradouro;
         document.querySelector('#bairro').value = infoCep.bairro;
         document.querySelector('#cidade').value = infoCep.localidade;
         document.querySelector('#estado').value = infoCep.uf;
+        }
     }else{
-        document.querySelector('#endereco').value = "cep invalido, por favor digite um cep valido!";
+        document.querySelector('#endereco').value = "CEP invalido, por favor digite um cep valido!";
     }
 };
 
