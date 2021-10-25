@@ -71,8 +71,6 @@ document.querySelector('#cep').addEventListener('focusout', preencherFormulario)
 
 
 
-
-
 // const preencherFormulario = (evento) => {
 //     const cep = target.value;
 
